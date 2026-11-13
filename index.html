@@ -57,6 +57,28 @@
     .nav-actions { display:flex; align-items:center; gap:9px; }
     .icon-btn { min-width:37px; height:37px; display:grid; place-items:center; padding:0 10px; border-radius:11px; border:1px solid var(--stroke); color:var(--text); background:var(--surface); font-size:12px; font-weight:700; }
     .icon-btn:hover { border-color:rgba(133,142,230,.5); }
+    /* Selettore lingua: il cursore luminoso scorre sulla lingua attiva. */
+    .lang-switch {
+      position:relative; isolation:isolate; display:grid; grid-template-columns:1fr 1fr;
+      align-items:center; width:88px; height:38px; padding:3px;
+      border:1px solid var(--stroke); border-radius:12px;
+      background:var(--surface); color:var(--muted);
+      font-size:12px; font-weight:800; line-height:1; letter-spacing:.025em;
+      transition:border-color .2s;
+    }
+    .lang-switch:hover { border-color:rgba(133,142,230,.5); }
+    .lang-switch::before {
+      content:""; position:absolute; top:3px; bottom:3px; left:3px;
+      width:calc((100% - 6px) / 2); border-radius:9px;
+      background:linear-gradient(115deg,rgba(139,124,255,.9),rgba(83,210,240,.72));
+      box-shadow:0 5px 18px rgba(104,99,246,.23);
+      transform:translateX(0);
+      transition:transform .28s cubic-bezier(.2,.8,.2,1);
+    }
+    .lang-switch[data-lang="en"]::before { transform:translateX(100%); }
+    .lang-switch span { position:relative; z-index:1; text-align:center; pointer-events:none; transition:color .28s; }
+    .lang-switch[data-lang="it"] span:first-child,
+    .lang-switch[data-lang="en"] span:last-child { color:#fff; }
     #menuBtn { display:none; font-size:19px; }
     .btn { display:inline-flex; align-items:center; justify-content:center; gap:11px; padding:14px 21px; min-height:49px; border-radius:12px; border:1px solid transparent; font-size:14px; font-weight:700; letter-spacing:-.1px; transition:transform .2s,box-shadow .2s,border-color .2s; }
     .btn:hover { transform:translateY(-2px); }
@@ -235,7 +257,7 @@
         <a href="#contact" data-it="Contatti" data-en="Contact">Contatti</a>
       </nav>
       <div class="nav-actions">
-        <button class="icon-btn" id="languageBtn" type="button" aria-label="Switch to English" title="Cambia lingua">EN</button>
+        <button class="lang-switch" id="languageBtn" type="button" data-lang="it" aria-label="Lingua attuale: italiano. Passa all’inglese" aria-pressed="false" title="Passa all’inglese"><span aria-hidden="true">IT</span><span aria-hidden="true">EN</span></button>
         <a class="icon-btn" href="https://github.com/RaffaeleZofrea" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.53v-2.06c-3.1.68-3.76-1.32-3.76-1.32-.5-1.28-1.25-1.62-1.25-1.62-1.02-.7.08-.69.08-.69 1.12.08 1.72 1.15 1.72 1.15 1 .1.99 1.64 3.24 1.17.1-.73.39-1.23.71-1.51-2.47-.28-5.07-1.24-5.07-5.5 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.1-2.95 0 0 .94-.3 3.06 1.15A10.6 10.6 0 0 1 12 6.02a10.6 10.6 0 0 1 2.79.38c2.12-1.45 3.05-1.15 3.05-1.15.6 1.53.23 2.67.12 2.95.72.78 1.14 1.78 1.14 3 0 4.27-2.6 5.22-5.08 5.5.41.36.77 1.08.77 2.18v3.12c0 .3.2.64.77.53A11.1 11.1 0 0 0 12 .9Z"/></svg>
         </a>
@@ -252,7 +274,7 @@
           <span class="pill"><span class="dot"></span><span data-it="In cerca di nuove opportunità" data-en="Open to new opportunities">In cerca di nuove opportunità</span></span>
           <h1>Raffaele<br><span class="gradient">Zofrea.</span></h1>
           <p class="eyebrow" data-it="Software development · AI · Robotics" data-en="Software development · AI · Robotics">Software development · AI · Robotics</p>
-          <p class="hero-lead" data-it="Studente magistrale in Ingegneria Informatica. Esploro il punto d'incontro tra sviluppo software, intelligenza artificiale e robotica, trasformando idee in progetti concreti." data-en="MSc Computer Engineering student. I explore the intersection of software development, artificial intelligence and robotics, turning ideas into real projects.">Studente magistrale in Ingegneria Informatica. Esploro il punto d'incontro tra sviluppo software, intelligenza artificiale e robotica, trasformando idee in progetti concreti.</p>
+          <p class="hero-lead" data-it="Studente magistrale in Ingegneria Informatica. Esploro il punto d'incontro tra sviluppo software, intelligenza artificiale e robotica." data-en="MSc Computer Engineering student. I explore the intersection of software development, artificial intelligence and robotics.">Studente magistrale in Ingegneria Informatica. Esploro il punto d'incontro tra sviluppo software, intelligenza artificiale e robotica.</p>
           <div class="hero-buttons">
             <a class="btn btn-main" href="#projects"><span data-it="Esplora i progetti" data-en="Explore projects">Esplora i progetti</span><span aria-hidden="true">↗</span></a>
             <a class="btn btn-ghost" href="#contact"><span data-it="Contattami" data-en="Get in touch">Contattami</span><span aria-hidden="true">↗</span></a>
@@ -379,15 +401,22 @@
       window.addEventListener('scroll', updateScroll, { passive:true }); updateScroll();
       menu.addEventListener('click', () => { const open = nav.classList.toggle('open'); menu.setAttribute('aria-expanded', String(open)); menu.textContent = open ? '✕' : '☰'; });
       nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); menu.setAttribute('aria-expanded','false'); menu.textContent = '☰'; }));
+      // Ripristina la lingua scelta dall'utente, se disponibile.
       let language = 'it';
-      langButton.addEventListener('click', () => {
-        language = language === 'it' ? 'en' : 'it';
+      try { if (localStorage.getItem('rz-portfolio-language') === 'en') language = 'en'; } catch (_) {}
+      function setLanguage(nextLanguage) {
+        language = nextLanguage;
         document.documentElement.lang = language;
         document.querySelectorAll('[data-it][data-en]').forEach(el => { el.textContent = el.dataset[language]; });
-        langButton.textContent = language === 'it' ? 'EN' : 'IT';
-        langButton.setAttribute('aria-label', language === 'it' ? 'Switch to English' : 'Passa all’italiano');
-        document.title = language === 'it' ? 'Raffaele Zofrea — Software & AI Portfolio' : 'Raffaele Zofrea — Software & AI Portfolio';
-      });
+        langButton.dataset.lang = language;
+        langButton.setAttribute('aria-pressed', String(language === 'en'));
+        const label = language === 'it' ? 'Lingua attuale: italiano. Passa all’inglese' : 'Current language: English. Switch to Italian';
+        langButton.setAttribute('aria-label', label);
+        langButton.title = language === 'it' ? 'Passa all’inglese' : 'Switch to Italian';
+        try { localStorage.setItem('rz-portfolio-language', language); } catch (_) {}
+      }
+      setLanguage(language);
+      langButton.addEventListener('click', () => setLanguage(language === 'it' ? 'en' : 'it'));
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if ('IntersectionObserver' in window) {
         const obs = new IntersectionObserver(entries => { for (const e of entries) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } } }, { threshold:.07, rootMargin:'0px 0px -30px 0px' });
