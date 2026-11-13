@@ -1,88 +1,414 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Raffaele Zofrea | Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070a14" />
+  <meta name="description" content="Portfolio di Raffaele Zofrea: sviluppo software, intelligenza artificiale, computer vision e robotica. Progetti, competenze e percorso formativo." />
+  <meta property="og:title" content="Raffaele Zofrea — Developer Portfolio" />
+  <meta property="og:description" content="Software development, AI, computer vision e robotica. Scopri il mio percorso e i miei progetti." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://raffaelezofrea.github.io/" />
+  <title>Raffaele Zofrea — Software & AI Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #f8fafc;
-      line-height: 1.6;
+    :root {
+      color-scheme: dark;
+      --bg: #080b16;
+      --bg2: #0e1222;
+      --panel: rgba(19, 25, 44, .72);
+      --panel-solid: #151a2c;
+      --surface: rgba(255,255,255,.045);
+      --stroke: rgba(186, 198, 245, .13);
+      --text: #f4f5ff;
+      --muted: #9aa5c0;
+      --a: #8b7cff;
+      --b: #53d2f0;
+      --accent: linear-gradient(118deg, var(--a), var(--b));
+      --shadow: 0 25px 85px rgba(0,0,0,.26);
+      --glow: rgba(117,102,255,.13);
+      --radius: 22px;
     }
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 70px 24px;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { margin: 0; overflow-x: hidden; background: var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; line-height:1.6; -webkit-font-smoothing: antialiased; }
+    body::before { content:""; position:fixed; pointer-events:none; z-index:-1; inset:0; background: radial-gradient(ellipse 52% 32% at 90% 7%,rgba(91,69,215,.19),transparent 80%), radial-gradient(ellipse 38% 30% at -8% 30%,rgba(36,120,170,.12),transparent 80%); }
+    h1,h2,h3,h4,p { margin-top:0; }
+    h1,h2,h3,.logo,.eyebrow,.number { font-family:'Space Grotesk',sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    button { font:inherit; cursor:pointer; }
+    button:focus-visible,a:focus-visible,summary:focus-visible { outline:3px solid var(--b); outline-offset:4px; }
+    ::selection { background:rgba(115,106,245,.45); color:#fff; }
+    .wrap { width:min(1160px,calc(100% - 48px)); margin:0 auto; }
+    .progress { position:fixed; top:0; left:0; height:3px; width:0; background:var(--accent); z-index:110; transition:width .1s linear; }
+    #stars { position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; opacity:.62; }
+    .noise { position:absolute; pointer-events:none; inset:0; z-index:0; background-image:radial-gradient(rgba(184,174,255,.17) .6px,transparent .6px); background-size:23px 23px; mask-image:linear-gradient(to bottom,black,transparent 82%); opacity:.15; }
+    header { position:fixed; top:0; left:0; right:0; z-index:100; border-bottom:1px solid transparent; transition:background .3s,border-color .3s,backdrop-filter .3s; }
+    header.scrolled { background:rgba(8,11,22,.87); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom-color:var(--stroke); }
+    .navbar { height:83px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .logo { display:flex; align-items:center; gap:11px; font-size:17px; font-weight:700; letter-spacing:-.6px; white-space:nowrap; }
+    .logo-mark { width:37px; height:37px; display:grid; place-items:center; border-radius:12px; background:var(--accent); color:#fff; font-size:15px; box-shadow:0 10px 28px rgba(112,91,243,.25); }
+    .logo span:last-child { color:var(--muted); font-size:12px; font-family:'DM Sans',sans-serif; font-weight:500; letter-spacing:0; margin-left:1px; }
+    .navlinks { display:flex; gap:26px; align-items:center; }
+    .navlinks a { color:var(--muted); font-weight:600; font-size:13px; transition:color .2s; }
+    .navlinks a:hover { color:var(--text); }
+    .nav-actions { display:flex; align-items:center; gap:9px; }
+    .icon-btn { min-width:37px; height:37px; display:grid; place-items:center; padding:0 10px; border-radius:11px; border:1px solid var(--stroke); color:var(--text); background:var(--surface); font-size:12px; font-weight:700; }
+    .icon-btn:hover { border-color:rgba(133,142,230,.5); }
+    #menuBtn { display:none; font-size:19px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:11px; padding:14px 21px; min-height:49px; border-radius:12px; border:1px solid transparent; font-size:14px; font-weight:700; letter-spacing:-.1px; transition:transform .2s,box-shadow .2s,border-color .2s; }
+    .btn:hover { transform:translateY(-2px); }
+    .btn-main { background:var(--accent); box-shadow:0 14px 40px rgba(108,87,246,.24); color:white; }
+    .btn-main:hover { box-shadow:0 15px 48px rgba(108,87,246,.40); }
+    .btn-ghost { background:rgba(255,255,255,.035); border-color:var(--stroke); color:var(--text); }
+    .btn-ghost:hover { border-color:rgba(154,165,220,.4); }
+    .hero { min-height:760px; position:relative; overflow:hidden; display:flex; align-items:center; padding:160px 0 110px; }
+    .hero-inner { position:relative; z-index:1; display:grid; grid-template-columns:1.03fr 1fr; align-items:center; gap:52px; }
+    .eyebrow { display:inline-flex; align-items:center; gap:9px; color:#cfcaff; font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+    .pill { display:inline-flex; align-items:center; gap:10px; background:rgba(124,115,246,.105); border:1px solid rgba(124,115,246,.28); padding:9px 13px; border-radius:100px; color:#c3c8ff; font-size:12px; font-weight:700; }
+    .pill .dot { width:7px; height:7px; border-radius:50%; background:#65f0b8; box-shadow:0 0 0 4px rgba(101,240,184,.13); }
+    .hero h1 { font-size:clamp(50px,6vw,87px); line-height:1.025; letter-spacing:-.075em; margin:25px 0 21px; font-weight:700; }
+    .gradient { background:var(--accent); color:transparent; background-clip:text; -webkit-background-clip:text; }
+    .hero-lead { font-size:19px; line-height:1.7; color:var(--muted); max-width:510px; margin-bottom:30px; }
+    .hero-buttons { display:flex; flex-wrap:wrap; gap:12px; }
+    .quick-facts { display:flex; flex-wrap:wrap; gap:21px; margin-top:44px; color:var(--muted); font-size:12px; font-weight:600; }
+    .quick-facts span { display:flex; align-items:center; gap:8px; }
+    .quick-facts i { width:7px; height:7px; border-radius:50%; background:var(--b); display:inline-block; }
+    .hero-art { position:relative; height:560px; isolation:isolate; }
+    .hero-halo { position:absolute; inset:70px 9px 15px 0; border-radius:50%; background:radial-gradient(circle,rgba(115,87,243,.22),rgba(70,153,253,.08) 33%,transparent 66%); filter:blur(20px); }
+    .orbit { position:absolute; border:1px solid rgba(142,145,239,.24); border-radius:50%; transform:rotateX(59deg) rotate(-23deg); }
+    .orbit.one { width:460px; height:460px; left:0; top:35px; animation:orb 15s linear infinite; }
+    .orbit.two { width:330px; height:330px; left:64px; top:100px; transform:rotateX(58deg) rotate(50deg); animation:orb2 18s linear infinite; }
+    .orbit.three { width:510px; height:510px; left:-30px; top:10px; transform:rotateX(67deg) rotate(-54deg); border-style:dashed; opacity:.4; }
+    @keyframes orb { to { transform:rotateX(59deg) rotate(337deg); } }
+    @keyframes orb2 { to { transform:rotateX(58deg) rotate(-310deg); } }
+    .visual-core { position:absolute; width:270px; height:270px; top:130px; left:99px; border-radius:50%; background:radial-gradient(circle at 35% 30%,rgba(120,232,251,.92),rgba(115,84,245,.8) 32%,rgba(50,45,127,.98) 63%,rgba(17,26,61,.9) 79%); box-shadow:inset -40px -32px 50px rgba(4,9,34,.64), inset 20px 18px 40px rgba(192,215,255,.15), 0 0 88px rgba(97,94,247,.26),0 0 130px rgba(22,193,228,.10); animation:float 6s ease-in-out infinite; overflow:hidden; }
+    .visual-core::before { content:""; position:absolute; inset:-30%; border:2px solid rgba(225,239,255,.29); border-radius:50%; transform:rotate(-27deg) scaleY(.46); box-shadow:0 0 25px rgba(153,231,255,.3); }
+    .visual-core::after { content:""; position:absolute; inset:20px; border:1px dashed rgba(224,239,255,.21); border-radius:50%; }
+    .core-symbol { position:absolute; inset:0; display:grid; place-items:center; font-size:82px; font-weight:700; font-family:'Space Grotesk',sans-serif; color:rgba(255,255,255,.80); text-shadow:0 0 24px rgba(188,233,255,.6); letter-spacing:-.09em; }
+    @keyframes float { 0%,100% { transform:translateY(0) rotate(-4deg); } 50% { transform:translateY(-16px) rotate(3deg); } }
+    .glass { position:absolute; background:rgba(20,27,48,.75); border:1px solid rgba(175,196,255,.19); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); box-shadow:0 22px 65px rgba(0,0,0,.30); border-radius:16px; }
+    .code-float { width:292px; left:-31px; top:320px; padding:18px 21px; transform:rotate(-5deg); animation:floatCard 8s ease-in-out infinite; }
+    @keyframes floatCard { 0%,100% { transform:translateY(0) rotate(-5deg); } 50% { transform:translateY(10px) rotate(-3deg); } }
+    .window-dots { display:flex; gap:5px; margin-bottom:12px; }
+    .window-dots i { display:block; width:7px; height:7px; border-radius:50%; background:#fa7970; }
+    .window-dots i:nth-child(2) { background:#fbc260; } .window-dots i:nth-child(3) { background:#55dbab; }
+    .code-float pre { margin:0; color:#b8c5e2; font-size:11px; line-height:1.85; font-family:ui-monospace,SFMono-Regular,Consolas,monospace; }
+    .code-float b { color:#9d96ff; font-weight:500; } .code-float em { color:#5fd2dd; font-style:normal; } .code-float strong { color:#f6c88d; font-weight:500; }
+    .mini-float { width:201px; right:-5px; top:100px; padding:17px 19px; transform:rotate(7deg); animation:mini 7s ease-in-out infinite; }
+    .mini-float small { display:block; color:var(--muted); font-size:11px; margin-top:7px; }
+    .mini-float b { font-size:16px; }
+    .mini-graphic { display:flex; gap:5px; margin-top:12px; align-items:end; height:33px; }
+    .mini-graphic i { flex:1; background:linear-gradient(0deg,rgba(75,190,237,.3),#8d80fc); border-radius:4px 4px 0 0; }
+    .mini-graphic i:nth-child(1){height:40%}.mini-graphic i:nth-child(2){height:68%}.mini-graphic i:nth-child(3){height:48%}.mini-graphic i:nth-child(4){height:95%}.mini-graphic i:nth-child(5){height:77%}.mini-graphic i:nth-child(6){height:100%}
+    @keyframes mini { 0%,100% { transform:rotate(7deg) translateY(0); } 50% { transform:rotate(4deg) translateY(-12px); } }
+    .scroll-cue { position:absolute; bottom:35px; left:calc(50% - 17px); color:var(--muted); font-size:18px; animation:bob 2s ease-in-out infinite; }
+    @keyframes bob { 50% { transform:translateY(7px); } }
+    .separator { height:1px; background:linear-gradient(90deg,transparent,var(--stroke),transparent); }
+    section.main-section { padding:112px 0; position:relative; }
+    .section-top { display:flex; justify-content:space-between; gap:18px; align-items:end; margin-bottom:42px; }
+    .section-title { font-size:clamp(36px,4.3vw,52px); line-height:1.12; letter-spacing:-.055em; margin:11px 0 0; }
+    .section-sub { max-width:420px; color:var(--muted); font-size:15px; margin:0; }
+    .about-grid { display:grid; grid-template-columns:1.35fr .65fr; gap:20px; }
+    .panel { background:var(--panel); border:1px solid var(--stroke); border-radius:var(--radius); padding:32px; box-shadow:var(--shadow); }
+    .about-main { padding:40px; position:relative; overflow:hidden; }
+    .about-main::after { content:"</>"; position:absolute; right:24px; bottom:-52px; font:700 190px 'Space Grotesk',sans-serif; letter-spacing:-.1em; color:rgba(140,139,230,.055); pointer-events:none; }
+    .about-main p { color:var(--muted); max-width:650px; font-size:16px; line-height:1.86; position:relative; z-index:1; margin-bottom:16px; }
+    .stat-column { display:grid; gap:20px; }
+    .stat { flex:1; display:flex; flex-direction:column; justify-content:center; padding:29px; }
+    .stat .number { color:var(--text); font-size:34px; font-weight:700; line-height:1; letter-spacing:-.06em; }
+    .stat span { color:var(--muted); font-size:13px; margin-top:12px; }
+    .stat .number.gradient { background:var(--accent); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .projects { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; }
+    .project { overflow:hidden; border-radius:var(--radius); border:1px solid var(--stroke); background:var(--panel); box-shadow:var(--shadow); transition:transform .25s,border-color .25s; transform-style:preserve-3d; }
+    .project:hover { border-color:rgba(143,134,253,.4); }
+    .project-visual { height:246px; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+    .project-visual.robot { background:radial-gradient(ellipse at 50% 44%,rgba(115,92,238,.26),transparent 60%), linear-gradient(145deg,#171934,#0f2232); }
+    .project-visual.lane { background:radial-gradient(ellipse at 50% 33%,rgba(44,174,214,.23),transparent 66%),linear-gradient(140deg,#101d30,#101526); }
+    .project-visual.website { background:radial-gradient(ellipse at 50% 40%,rgba(126,82,225,.22),transparent 65%),linear-gradient(145deg,#1b172f,#0c202d); }
+    .project-visual .grid-lines { position:absolute; inset:-35%; background-image:linear-gradient(rgba(159,171,234,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(159,171,234,.09) 1px,transparent 1px); background-size:34px 34px; transform:perspective(400px) rotateX(48deg) scale(1.2); mask-image:linear-gradient(to bottom,transparent 5%,black 80%); }
+    .project-badge { position:absolute; top:18px; left:18px; font-size:11px; font-weight:700; color:#d6d2ff; background:rgba(14,17,38,.58); border:1px solid rgba(211,205,255,.18); padding:7px 11px; border-radius:20px; z-index:2; }
+    .robot-svg { width:300px; height:194px; filter:drop-shadow(0 24px 40px rgba(110,112,247,.24)); transform:rotate(-7deg); animation:robotBob 5s ease-in-out infinite; }
+    @keyframes robotBob { 50% { transform:translateY(-9px) rotate(-4deg); } }
+    .lane-svg { width:min(92%,360px); height:235px; filter:drop-shadow(0 18px 34px rgba(51,214,239,.12)); }
+    .web-svg { width:min(85%,350px); height:210px; filter:drop-shadow(0 17px 30px rgba(133,81,252,.14)); }
+    .project-body { padding:30px; }
+    .project-number { font:700 12px 'Space Grotesk',sans-serif; color:var(--a); letter-spacing:.13em; }
+    .project h3 { font-size:24px; letter-spacing:-.04em; margin:9px 0 11px; }
+    .project p { color:var(--muted); font-size:14px; line-height:1.85; min-height:80px; margin-bottom:18px; }
+    .tags { display:flex; flex-wrap:wrap; gap:8px; }
+    .tag { padding:6px 10px; color:#b4bde1; background:rgba(144,153,243,.08); border:1px solid rgba(157,170,235,.12); border-radius:8px; font-size:11px; font-weight:700; }
+    .project details { margin-top:20px; padding-top:18px; border-top:1px solid var(--stroke); }
+    .project summary { list-style:none; cursor:pointer; display:flex; justify-content:space-between; color:#bcb8ff; font-size:13px; font-weight:700; }
+    .project summary::-webkit-details-marker { display:none; }
+    .project summary::after { content:'↗'; font-size:17px; transition:transform .2s; }
+    .project details[open] summary::after { transform:rotate(45deg); }
+    .project details p { margin:13px 0 0; min-height:0; }
+    .project.slim { grid-column:1 / -1; display:grid; grid-template-columns:1fr 1fr; }
+    .project.slim .project-visual { height:100%; min-height:250px; }
+    .project.slim .project-body { display:flex; flex-direction:column; justify-content:center; }
+    .skills-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:19px; }
+    .skill-card { padding:27px; }
+    .skill-icon { height:42px; width:42px; display:grid; place-items:center; border-radius:12px; font-size:20px; color:#bbb4ff; background:rgba(126,106,242,.15); margin-bottom:19px; }
+    .skill-card h3 { font-size:18px; margin-bottom:13px; }
+    .skill-card p { font-size:13px; color:var(--muted); line-height:1.9; margin:0; }
+    .timeline { position:relative; display:grid; gap:18px; margin-left:8px; padding-left:32px; border-left:1px solid rgba(137,129,251,.32); }
+    .timeline-item { padding:25px 30px; position:relative; }
+    .timeline-item::before { content:""; position:absolute; width:11px; height:11px; left:-38px; top:34px; border-radius:50%; background:#8a80ff; border:3px solid var(--bg); box-shadow:0 0 0 3px rgba(138,128,255,.15); }
+    .timeline-date { color:#a8a1ff; font-size:12px; font-weight:700; letter-spacing:.03em; margin-bottom:8px; }
+    .timeline h3 { font-size:19px; margin-bottom:5px; }
+    .timeline p { margin:0; font-size:13px; color:var(--muted); }
+    .contact-panel { overflow:hidden; position:relative; text-align:center; padding:70px 28px; background:radial-gradient(ellipse at 50% 120%,rgba(79,142,248,.18),transparent 65%),radial-gradient(ellipse at 50% 0,rgba(113,84,234,.14),transparent 60%),var(--panel); }
+    .contact-panel::before { content:""; position:absolute; width:450px; height:450px; border:1px solid rgba(138,128,255,.12); border-radius:50%; left:50%; top:50%; transform:translate(-50%,-50%); pointer-events:none; }
+    .contact-panel .eyebrow { justify-content:center; }
+    .contact-panel h2 { margin:15px auto; font-size:clamp(37px,5vw,58px); line-height:1.12; letter-spacing:-.055em; max-width:710px; }
+    .contact-panel p { color:var(--muted); max-width:500px; margin:18px auto 28px; }
+    .contact-buttons { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; position:relative; }
+    footer { padding:28px 0 35px; border-top:1px solid var(--stroke); }
+    .foot { display:flex; justify-content:space-between; gap:15px; align-items:center; font-size:12px; color:var(--muted); }
+    .foot a:hover { color:var(--text); }
+    .foot-right { display:flex; gap:23px; }
+    [data-reveal] { opacity:0; transform:translateY(25px); transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1); }
+    [data-reveal].visible { opacity:1; transform:translateY(0); }
+    /* Mobile */
+    @media (max-width:960px) {
+      .hero-inner { grid-template-columns:1fr; }
+      .hero { padding-top:142px; padding-bottom:75px; }
+      .hero-art { height:430px; width:500px; max-width:100%; margin:auto; }
+      .hero-lead { max-width:700px; }
+      .navlinks { gap:15px; } .logo span:last-child { display:none; }
+      .orbit.one { left:8%; } .orbit.two { left:21%; } .orbit.three { left:2%; } .visual-core { left:calc(50% - 135px); }
+      .code-float { left:2%; } .mini-float { right:0; }
+      .skills-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
     }
-    h1 { font-size: 48px; margin-bottom: 8px; }
-    h2 { color: #38bdf8; }
-    p { color: #cbd5e1; }
-    section { margin-top: 55px; }
-    .card {
-      background: #1e293b;
-      border-radius: 12px;
-      padding: 24px;
-      margin: 16px 0;
+    @media (max-width:650px) {
+      .wrap { width:min(100% - 32px,1160px); }
+      .navbar { height:69px; } .logo { font-size:15px; }
+      #menuBtn { display:grid; }
+      .navlinks { position:absolute; display:none; left:16px; right:16px; top:75px; flex-direction:column; align-items:stretch; background:var(--panel-solid); border:1px solid var(--stroke); border-radius:16px; padding:18px; gap:0; box-shadow:var(--shadow); }
+      .navlinks.open { display:flex; }
+      .navlinks a { padding:12px 6px; font-size:14px; }
+      .nav-actions { margin-left:auto; }
+      .hero { min-height:auto; padding:117px 0 63px; }
+      .hero h1 { font-size:clamp(47px,12vw,68px); }
+      .hero-lead { font-size:16px; }
+      .hero-art { height:345px; transform:scale(.76); transform-origin:center top; width:450px; margin-bottom:-65px; }
+      .hero-buttons .btn { flex:1; }
+      .quick-facts { gap:13px; margin-top:30px; }
+      .scroll-cue { display:none; }
+      section.main-section { padding:78px 0; }
+      .section-top { display:block; margin-bottom:26px; }
+      .section-sub { margin-top:15px; }
+      .about-grid,.projects,.skills-grid { grid-template-columns:1fr; }
+      .panel { padding:24px; }
+      .about-main { padding:29px; }
+      .stat-column { grid-template-columns:1fr 1fr; gap:12px; }
+      .stat { padding:22px; } .stat .number { font-size:28px; }
+      .project.slim { grid-column:auto; display:block; }
+      .project.slim .project-visual { height:225px; min-height:0; }
+      .project p { min-height:0; }
+      .project-visual { height:215px; }
+      .project-body { padding:24px; }
+      .contact-panel { padding:48px 19px; }
+      .timeline { padding-left:22px; }
+      .timeline-item::before { left:-28px; }
+      .foot { flex-direction:column; align-items:flex-start; }
     }
-    a { color: #38bdf8; }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:.01ms!important; }
+      [data-reveal] { opacity:1!important; transform:none!important; }
+    }
   </style>
 </head>
 <body>
+  <div class="progress" id="scrollProgress" aria-hidden="true"></div>
+  <header id="siteHeader">
+    <div class="wrap navbar">
+      <a class="logo" href="#home" aria-label="Raffaele Zofrea - Home"><span class="logo-mark">RZ</span> Raffaele<span> / Portfolio</span></a>
+      <nav class="navlinks" id="navlinks" aria-label="Navigazione principale">
+        <a href="#about" data-it="Chi sono" data-en="About">Chi sono</a>
+        <a href="#projects" data-it="Progetti" data-en="Projects">Progetti</a>
+        <a href="#skills" data-it="Competenze" data-en="Skills">Competenze</a>
+        <a href="#experience" data-it="Percorso" data-en="Journey">Percorso</a>
+        <a href="#contact" data-it="Contatti" data-en="Contact">Contatti</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="languageBtn" type="button" aria-label="Switch to English" title="Cambia lingua">EN</button>
+        <a class="icon-btn" href="https://github.com/RaffaeleZofrea" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.53v-2.06c-3.1.68-3.76-1.32-3.76-1.32-.5-1.28-1.25-1.62-1.25-1.62-1.02-.7.08-.69.08-.69 1.12.08 1.72 1.15 1.72 1.15 1 .1.99 1.64 3.24 1.17.1-.73.39-1.23.71-1.51-2.47-.28-5.07-1.24-5.07-5.5 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.1-2.95 0 0 .94-.3 3.06 1.15A10.6 10.6 0 0 1 12 6.02a10.6 10.6 0 0 1 2.79.38c2.12-1.45 3.05-1.15 3.05-1.15.6 1.53.23 2.67.12 2.95.72.78 1.14 1.78 1.14 3 0 4.27-2.6 5.22-5.08 5.5.41.36.77 1.08.77 2.18v3.12c0 .3.2.64.77.53A11.1 11.1 0 0 0 12 .9Z"/></svg>
+        </a>
+        <button class="icon-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="navlinks" aria-label="Apri menu">☰</button>
+      </div>
+    </div>
+  </header>
+
   <main>
-    <h1>Raffaele Zofrea</h1>
-    <h2>Computer Engineering Student</h2>
-    <p>
-      Studente magistrale in Ingegneria Informatica
-      presso l'Università di Parma.
-      Interessato allo sviluppo software,
-      all'intelligenza artificiale e alla robotica.
-    </p>
-
-    <section>
-      <h2>Chi sono</h2>
-      <p>
-        Laureato in Informatica e attualmente
-        impegnato nell'approfondimento di
-        tecnologie software e sistemi intelligenti.
-      </p>
+    <section class="hero" id="home">
+      <canvas id="stars" aria-hidden="true"></canvas><div class="noise" aria-hidden="true"></div>
+      <div class="wrap hero-inner">
+        <div data-reveal>
+          <span class="pill"><span class="dot"></span><span data-it="In cerca di nuove opportunità" data-en="Open to new opportunities">In cerca di nuove opportunità</span></span>
+          <h1>Raffaele<br><span class="gradient">Zofrea.</span></h1>
+          <p class="eyebrow" data-it="Software development · AI · Robotics" data-en="Software development · AI · Robotics">Software development · AI · Robotics</p>
+          <p class="hero-lead" data-it="Studente magistrale in Ingegneria Informatica. Esploro il punto d'incontro tra sviluppo software, intelligenza artificiale e robotica, trasformando idee in progetti concreti." data-en="MSc Computer Engineering student. I explore the intersection of software development, artificial intelligence and robotics, turning ideas into real projects.">Studente magistrale in Ingegneria Informatica. Esploro il punto d'incontro tra sviluppo software, intelligenza artificiale e robotica, trasformando idee in progetti concreti.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-main" href="#projects"><span data-it="Esplora i progetti" data-en="Explore projects">Esplora i progetti</span><span aria-hidden="true">↗</span></a>
+            <a class="btn btn-ghost" href="#contact"><span data-it="Contattami" data-en="Get in touch">Contattami</span><span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="quick-facts"><span><i></i> <span data-it="Università di Parma" data-en="University of Parma">Università di Parma</span></span><span><i></i> Computer Engineering</span><span><i></i> Italy</span></div>
+        </div>
+        <div class="hero-art" aria-label="Illustrazione astratta interattiva di software e intelligenza artificiale" role="img" data-reveal>
+          <div class="hero-halo"></div><div class="orbit one"></div><div class="orbit two"></div><div class="orbit three"></div>
+          <div class="visual-core"><div class="core-symbol">&lt;/&gt;</div></div>
+          <div class="glass code-float" aria-hidden="true">
+            <div class="window-dots"><i></i><i></i><i></i></div>
+            <pre><b>class</b> <em>NextProject</em>:
+  <b>def</b> <em>build</em>(self):
+    passion = <strong>"technology"</strong>
+    ideas = <strong>"innovation"</strong>
+    <b>return</b> passion + ideas</pre>
+          </div>
+          <div class="glass mini-float" aria-hidden="true"><b>Build / Explore</b><small>Software • AI • Robotics</small><div class="mini-graphic"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        </div>
+      </div><div class="scroll-cue" aria-hidden="true">↓</div>
     </section>
+    <div class="separator"></div>
 
-    <section>
-      <h2>I miei progetti</h2>
-      <div class="card">
-        <h3>Robot quadrupede</h3>
-        <p>
-          Sviluppo e programmazione dei movimenti
-          di un robot quadrupede e analisi di immagini.
-        </p>
+    <section class="main-section" id="about">
+      <div class="wrap">
+        <div class="section-top" data-reveal><div><span class="eyebrow">01 / <span data-it="PRESENTAZIONE" data-en="ABOUT ME">PRESENTAZIONE</span></span><h2 class="section-title" data-it="Oltre il codice." data-en="Beyond the code.">Oltre il codice.</h2></div><p class="section-sub" data-it="Un percorso di studio, curiosità e sperimentazione." data-en="A journey driven by learning, curiosity and experimentation.">Un percorso di studio, curiosità e sperimentazione.</p></div>
+        <div class="about-grid">
+          <article class="panel about-main" data-reveal>
+            <h3 data-it="Ciao, sono Raffaele 👋" data-en="Hi, I'm Raffaele 👋">Ciao, sono Raffaele 👋</h3>
+            <p data-it="Ho conseguito la laurea triennale in Informatica all'Università di Parma e sto proseguendo gli studi con la laurea magistrale in Ingegneria Informatica. Mi appassionano la programmazione, la computer vision e le applicazioni dell'AI in sistemi reali." data-en="I earned my BSc in Computer Science at the University of Parma and I'm now pursuing an MSc in Computer Engineering. I'm passionate about programming, computer vision and applying AI to real-world systems.">Ho conseguito la laurea triennale in Informatica all'Università di Parma e sto proseguendo gli studi con la laurea magistrale in Ingegneria Informatica. Mi appassionano la programmazione, la computer vision e le applicazioni dell'AI in sistemi reali.</p>
+            <p data-it="Durante un'esperienza di stage universitario ho contribuito a un progetto di robotica quadrupede. Oggi continuo a sviluppare nuovi progetti, sperimentando tecniche di machine learning e strumenti di sviluppo software." data-en="During a university internship I contributed to a quadruped robotics project. Today I continue developing new projects and exploring machine learning techniques and software engineering tools.">Durante un'esperienza di stage universitario ho contribuito a un progetto di robotica quadrupede. Oggi continuo a sviluppare nuovi progetti, sperimentando tecniche di machine learning e strumenti di sviluppo software.</p>
+          </article>
+          <div class="stat-column"><div class="panel stat" data-reveal><strong class="number gradient">MSc</strong><span data-it="Ingegneria Informatica · in corso" data-en="Computer Engineering · ongoing">Ingegneria Informatica · in corso</span></div><div class="panel stat" data-reveal><strong class="number">BSc</strong><span data-it="Laurea triennale in Informatica" data-en="Bachelor's in Computer Science">Laurea triennale in Informatica</span></div></div>
+        </div>
       </div>
-      <div class="card">
-        <h3>Lane Detection - In corso</h3>
-        <p>
-          Progetto di riconoscimento delle corsie
-          stradali attraverso reti neurali.
-        </p>
+    </section>
+
+    <section class="main-section" id="projects">
+      <div class="wrap">
+        <div class="section-top" data-reveal><div><span class="eyebrow">02 / <span data-it="PROGETTI SELEZIONATI" data-en="SELECTED WORK">PROGETTI SELEZIONATI</span></span><h2 class="section-title" data-it="Dalle idee ai progetti." data-en="Ideas into projects.">Dalle idee ai progetti.</h2></div><p class="section-sub" data-it="Alcune esperienze che raccontano cosa sto imparando e costruendo. Le schede si possono espandere." data-en="Selected experiences that show what I'm learning and building. Expand each card for more detail.">Alcune esperienze che raccontano cosa sto imparando e costruendo. Le schede si possono espandere.</p></div>
+        <div class="projects">
+          <article class="project" data-tilt data-reveal>
+            <div class="project-visual robot"><div class="grid-lines"></div><span class="project-badge">ROBOTICS / 2025</span>
+              <svg class="robot-svg" viewBox="0 0 350 220" xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="Illustrazione di un robot quadrupede">
+                <ellipse cx="173" cy="199" rx="114" ry="15" fill="#716cfa" opacity=".16"/>
+                <path d="M90 108L71 146L83 187M146 117L135 153L144 192M240 117L252 156L240 190M279 109L302 144L293 185" stroke="#8784f9" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M82 187L99 190M135 193L154 195M232 192L249 190M287 186L305 184" stroke="#63e1f2" stroke-width="11" stroke-linecap="round"/>
+                <path d="M84 80L263 65L298 92L277 132L117 145L74 117Z" fill="#333858" stroke="#b7b6ff" stroke-width="3"/>
+                <path d="M90 84L260 72L284 91L115 111Z" fill="#6262b0" opacity=".9"/>
+                <path d="M281 83L313 87L325 113L299 127L279 112" fill="#454a7a" stroke="#a9b4ff" stroke-width="3"/>
+                <circle cx="312" cy="103" r="7" fill="#64e7f0"/><circle cx="312" cy="103" r="15" stroke="#64e7f0" stroke-opacity=".35"/>
+                <path d="M147 92L201 86" stroke="#a1a0f6" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="111" cy="122" r="8" fill="#9f9bfc"/><circle cx="249" cy="111" r="8" fill="#9f9bfc"/>
+              </svg>
+            </div>
+            <div class="project-body"><span class="project-number">PROJECT 001</span><h3 data-it="Robot quadrupede" data-en="Quadruped robot">Robot quadrupede</h3><p data-it="Contributo a un progetto universitario di robotica: sviluppo dei movimenti e della camminata, analisi di immagini e interpretazione di planimetrie." data-en="Contributed to a university robotics project: gait and motion development, image analysis and interpretation of building floor plans.">Contributo a un progetto universitario di robotica: sviluppo dei movimenti e della camminata, analisi di immagini e interpretazione di planimetrie.</p><div class="tags"><span class="tag">Robotics</span><span class="tag">Computer Vision</span><span class="tag">Image Processing</span></div><details><summary data-it="Scopri il progetto" data-en="Explore this project">Scopri il progetto</summary><p data-it="Esperienza svolta durante uno stage presso l'Università di Parma (febbraio–luglio 2025). Il lavoro ha riguardato l'avvio e lo sviluppo di un sistema robotico quadrupede, incluso l'uso di immagini e documenti PDF per ricavare informazioni utili alla navigazione." data-en="University of Parma internship (February–July 2025). The work involved early-stage development of a quadruped robotic system, including processing images and PDF floor plans to extract navigation-relevant information.">Esperienza svolta durante uno stage presso l'Università di Parma (febbraio–luglio 2025). Il lavoro ha riguardato l'avvio e lo sviluppo di un sistema robotico quadrupede, incluso l'uso di immagini e documenti PDF per ricavare informazioni utili alla navigazione.</p></details></div>
+          </article>
+          <article class="project" data-tilt data-reveal>
+            <div class="project-visual lane"><div class="grid-lines"></div><span class="project-badge" data-it="AI / IN SVILUPPO" data-en="AI / IN PROGRESS">AI / IN SVILUPPO</span>
+              <svg class="lane-svg" viewBox="0 0 360 235" xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="Illustrazione del riconoscimento di corsie stradali">
+                <path d="M0 234L133 44H227L360 234H0Z" fill="#182b3f" opacity=".9"/><path d="M133 44L0 234M227 44L360 234" stroke="#4f6889" stroke-width="3"/>
+                <path d="M173 44L130 234M187 44L230 234" stroke="#6de4f2" stroke-width="3" stroke-dasharray="11 13"/>
+                <path d="M129 49L37 213M232 49L323 213" stroke="#51e0e9" stroke-width="4" opacity=".9"/>
+                <path d="M127 51L55 198M233 51L305 198" stroke="#73eefa" stroke-width="1" opacity=".3"/>
+                <rect x="117" y="34" width="128" height="152" rx="8" stroke="#817bf2" stroke-width="1.5" stroke-dasharray="6 7" opacity=".7"/>
+                <circle cx="127" cy="49" r="4" fill="#54eff6"/><circle cx="232" cy="49" r="4" fill="#54eff6"/><circle cx="37" cy="213" r="4" fill="#54eff6"/><circle cx="323" cy="213" r="4" fill="#54eff6"/>
+                <path d="M26 25H67M26 25V60M334 25H293M334 25V60M26 197V218H67M334 197V218H293" stroke="#7b79eb" stroke-width="2" opacity=".8"/>
+                <text x="18" y="17" fill="#86b2ff" font-family="monospace" font-size="9">LANE DETECTION</text>
+              </svg>
+            </div>
+            <div class="project-body"><span class="project-number">PROJECT 002</span><h3>Lane Detection</h3><p data-it="Progetto universitario in corso per riconoscere e disegnare le corsie stradali nelle immagini tramite reti neurali, con dataset TuSimple." data-en="Ongoing university project to detect and draw road lane markings in images using neural networks and the TuSimple dataset.">Progetto universitario in corso per riconoscere e disegnare le corsie stradali nelle immagini tramite reti neurali, con dataset TuSimple.</p><div class="tags"><span class="tag">Python</span><span class="tag">Deep Learning</span><span class="tag">Computer Vision</span></div><details><summary data-it="Scopri il progetto" data-en="Explore this project">Scopri il progetto</summary><p data-it="Obiettivo iniziale: addestrare un modello che identifichi la posizione delle linee di corsia in immagini mai viste. La possibilità di sperimentarlo successivamente in un simulatore è tra gli sviluppi previsti." data-en="Initial goal: train a model to locate lane markings in previously unseen images. Testing it in a simulator is a potential next step.">Obiettivo iniziale: addestrare un modello che identifichi la posizione delle linee di corsia in immagini mai viste. La possibilità di sperimentarlo successivamente in un simulatore è tra gli sviluppi previsti.</p></details></div>
+          </article>
+          <article class="project slim" data-tilt data-reveal>
+            <div class="project-visual website"><div class="grid-lines"></div><span class="project-badge">WEB / 2026</span>
+              <svg class="web-svg" viewBox="0 0 350 210" xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="Illustrazione di una pagina web">
+                <rect x="22" y="22" width="306" height="167" rx="13" fill="#181d38" stroke="#6d6fbf" stroke-width="2"/>
+                <path d="M22 51H328" stroke="#6d6fbf"/><circle cx="42" cy="37" r="5" fill="#ed7e90"/><circle cx="58" cy="37" r="5" fill="#edc18c"/><circle cx="74" cy="37" r="5" fill="#73d5c8"/>
+                <rect x="42" y="75" width="130" height="11" rx="5" fill="#8e84fc"/><rect x="42" y="96" width="103" height="7" rx="3.5" fill="#5d6a91"/><rect x="42" y="110" width="116" height="7" rx="3.5" fill="#5d6a91"/><rect x="42" y="136" width="82" height="25" rx="6" fill="#6562c2"/>
+                <circle cx="250" cy="119" r="49" fill="#463b90"/><circle cx="250" cy="119" r="30" fill="#6e6ce5"/><path d="M237 119L247 129L267 107" stroke="#a3f0ff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="project-body"><span class="project-number">PROJECT 003</span><h3 data-it="Portfolio personale" data-en="Personal portfolio">Portfolio personale</h3><p data-it="Questo sito: un progetto web sviluppato per presentare competenze ed esperienze, con design responsive, animazioni e contenuti bilingue." data-en="This website: a web project built to showcase my skills and experience, featuring responsive design, animations and bilingual content.">Questo sito: un progetto web sviluppato per presentare competenze ed esperienze, con design responsive, animazioni e contenuti bilingue.</p><div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">GitHub Pages</span></div><details><summary data-it="Scopri il progetto" data-en="Explore this project">Scopri il progetto</summary><p data-it="La pagina è ospitata gratuitamente su GitHub Pages. Il codice è pubblico e può essere aggiornato direttamente dal repository." data-en="The page is hosted on GitHub Pages. Its source code is public and can be updated directly from the repository.">La pagina è ospitata gratuitamente su GitHub Pages. Il codice è pubblico e può essere aggiornato direttamente dal repository.</p><p><a href="https://github.com/RaffaeleZofrea/RaffaeleZofrea.github.io" target="_blank" rel="noopener noreferrer" style="color:var(--b)">GitHub repository ↗</a></p></details></div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section>
-      <h2>Competenze</h2>
-      <p>
-        Python, C, C++, Java, Kotlin,
-        HTML, CSS, JavaScript, SQL.
-      </p>
-    </section>
+    <section class="main-section" id="skills"><div class="wrap"><div class="section-top" data-reveal><div><span class="eyebrow">03 / <span data-it="TECNOLOGIE" data-en="TECHNOLOGIES">TECNOLOGIE</span></span><h2 class="section-title" data-it="Il mio toolkit." data-en="My toolkit.">Il mio toolkit.</h2></div><p class="section-sub" data-it="Linguaggi e strumenti incontrati durante il mio percorso formativo e nei progetti." data-en="Languages and tools I've worked with throughout my studies and projects.">Linguaggi e strumenti incontrati durante il mio percorso formativo e nei progetti.</p></div>
+      <div class="skills-grid">
+        <article class="panel skill-card" data-reveal><div class="skill-icon">⌘</div><h3 data-it="Programmazione" data-en="Programming">Programmazione</h3><p>C · C++ · Python · Java · Kotlin · MATLAB</p></article>
+        <article class="panel skill-card" data-reveal><div class="skill-icon">&lt;/&gt;</div><h3 data-it="Sviluppo web" data-en="Web development">Sviluppo web</h3><p>HTML · CSS · JavaScript · PHP</p></article>
+        <article class="panel skill-card" data-reveal><div class="skill-icon">▤</div><h3>Database</h3><p>MySQL · PostgreSQL · SQLite · MongoDB</p></article>
+        <article class="panel skill-card" data-reveal><div class="skill-icon">◎</div><h3>AI & Computer Vision</h3><p data-it="Reti neurali · Elaborazione di immagini · Progetti di deep learning" data-en="Neural networks · Image processing · Deep learning projects">Reti neurali · Elaborazione di immagini · Progetti di deep learning</p></article>
+        <article class="panel skill-card" data-reveal><div class="skill-icon">⌁</div><h3 data-it="Strumenti & sistemi" data-en="Tools & systems">Strumenti & sistemi</h3><p>Windows · Linux · macOS · GitHub · AutoCAD · Excel</p></article>
+        <article class="panel skill-card" data-reveal><div class="skill-icon">◈</div><h3 data-it="Lingue" data-en="Languages">Lingue</h3><p data-it="Italiano: madrelingua · Inglese: B2" data-en="Italian: native · English: B2">Italiano: madrelingua · Inglese: B2</p></article>
+      </div></div></section>
 
-    <section>
-      <h2>Contatti</h2>
-      <a href="https://github.com/RaffaeleZofrea">
-        Il mio profilo GitHub
-      </a>
-    </section>
+    <section class="main-section" id="experience"><div class="wrap"><div class="section-top" data-reveal><div><span class="eyebrow">04 / <span data-it="FORMAZIONE & ESPERIENZE" data-en="EDUCATION & EXPERIENCE">FORMAZIONE & ESPERIENZE</span></span><h2 class="section-title" data-it="Il mio percorso." data-en="My journey.">Il mio percorso.</h2></div><p class="section-sub" data-it="Formazione accademica ed esperienze che hanno contribuito alla mia crescita." data-en="Academic background and experiences that helped shape my growth.">Formazione accademica ed esperienze che hanno contribuito alla mia crescita.</p></div>
+      <div class="timeline">
+        <article class="panel timeline-item" data-reveal><div class="timeline-date" data-it="2025 — OGGI" data-en="2025 — PRESENT">2025 — OGGI</div><h3 data-it="Laurea Magistrale · Ingegneria Informatica" data-en="MSc · Computer Engineering">Laurea Magistrale · Ingegneria Informatica</h3><p data-it="Università degli Studi di Parma · in corso" data-en="University of Parma · ongoing">Università degli Studi di Parma · in corso</p></article>
+        <article class="panel timeline-item" data-reveal><div class="timeline-date">2025</div><h3 data-it="Stage universitario · Robotica quadrupede" data-en="University internship · Quadruped robotics">Stage universitario · Robotica quadrupede</h3><p data-it="Università di Parma · sviluppo del movimento e analisi di immagini e documenti" data-en="University of Parma · motion development and image/document analysis">Università di Parma · sviluppo del movimento e analisi di immagini e documenti</p></article>
+        <article class="panel timeline-item" data-reveal><div class="timeline-date">2022 — 2025</div><h3 data-it="Laurea Triennale · Informatica" data-en="BSc · Computer Science">Laurea Triennale · Informatica</h3><p data-it="Università degli Studi di Parma" data-en="University of Parma">Università degli Studi di Parma</p></article>
+        <article class="panel timeline-item" data-reveal><div class="timeline-date">2023 — 2026</div><h3 data-it="Impiegato part-time · Studio tecnico" data-en="Part-time employee · Technical office">Impiegato part-time · Studio tecnico</h3><p data-it="Gestione dati Excel, restituzioni grafiche AutoCAD e supporto organizzativo" data-en="Excel data management, AutoCAD drafting and administrative support">Gestione dati Excel, restituzioni grafiche AutoCAD e supporto organizzativo</p></article>
+      </div></div></section>
+
+    <section class="main-section" id="contact"><div class="wrap"><div class="panel contact-panel" data-reveal><span class="eyebrow">05 / <span data-it="CONTATTI" data-en="CONTACT">CONTATTI</span></span><h2 data-it="Costruiamo qualcosa di interessante." data-en="Let's build something interesting.">Costruiamo qualcosa di interessante.</h2><p data-it="Sono interessato a opportunità di tirocinio, collaborazione e progetti nell'ambito dello sviluppo software e delle tecnologie intelligenti." data-en="I'm interested in internships, collaboration and projects in software development and intelligent technologies.">Sono interessato a opportunità di tirocinio, collaborazione e progetti nell'ambito dello sviluppo software e delle tecnologie intelligenti.</p><div class="contact-buttons"><a class="btn btn-main" href="mailto:raffaele.zofrea2001@gmail.com?subject=Contatto%20dal%20portfolio"><span data-it="Scrivimi una email" data-en="Send me an email">Scrivimi una email</span>↗</a><a class="btn btn-ghost" href="https://github.com/RaffaeleZofrea" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></div></section>
   </main>
+  <footer><div class="wrap foot"><span>© <span id="year">2026</span> Raffaele Zofrea. <span data-it="Realizzato con curiosità e codice." data-en="Built with curiosity and code.">Realizzato con curiosità e codice.</span></span><div class="foot-right"><a href="#home" data-it="Torna su ↑" data-en="Back to top ↑">Torna su ↑</a><a href="https://github.com/RaffaeleZofrea" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></footer>
+  <script>
+    (() => {
+      'use strict';
+      const qs = (s) => document.querySelector(s);
+      const header = qs('#siteHeader');
+      const progress = qs('#scrollProgress');
+      const menu = qs('#menuBtn');
+      const nav = qs('#navlinks');
+      const langButton = qs('#languageBtn');
+      qs('#year').textContent = String(new Date().getFullYear());
+      function updateScroll() {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = `${max > 0 ? window.scrollY / max * 100 : 0}%`;
+        header.classList.toggle('scrolled', window.scrollY > 24);
+      }
+      window.addEventListener('scroll', updateScroll, { passive:true }); updateScroll();
+      menu.addEventListener('click', () => { const open = nav.classList.toggle('open'); menu.setAttribute('aria-expanded', String(open)); menu.textContent = open ? '✕' : '☰'; });
+      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); menu.setAttribute('aria-expanded','false'); menu.textContent = '☰'; }));
+      let language = 'it';
+      langButton.addEventListener('click', () => {
+        language = language === 'it' ? 'en' : 'it';
+        document.documentElement.lang = language;
+        document.querySelectorAll('[data-it][data-en]').forEach(el => { el.textContent = el.dataset[language]; });
+        langButton.textContent = language === 'it' ? 'EN' : 'IT';
+        langButton.setAttribute('aria-label', language === 'it' ? 'Switch to English' : 'Passa all’italiano');
+        document.title = language === 'it' ? 'Raffaele Zofrea — Software & AI Portfolio' : 'Raffaele Zofrea — Software & AI Portfolio';
+      });
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver(entries => { for (const e of entries) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } } }, { threshold:.07, rootMargin:'0px 0px -30px 0px' });
+        document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+      } else { document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('visible')); }
+      if (!reduced && window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+        document.querySelectorAll('[data-tilt]').forEach(card => {
+          card.addEventListener('pointermove', (ev) => { const r = card.getBoundingClientRect(); const x=(ev.clientX-r.left)/r.width-.5; const y=(ev.clientY-r.top)/r.height-.5; card.style.transform=`perspective(1100px) rotateX(${-y*3}deg) rotateY(${x*4}deg) translateY(-3px)`; });
+          card.addEventListener('pointerleave', () => { card.style.transform=''; });
+        });
+      }
+      // Canvas background: animated particles, no external libraries.
+      const canvas=qs('#stars'); const ctx=canvas.getContext('2d');
+      if(ctx) {
+        let points=[],cw=0,ch=0,raf=0;
+        const resize=() => { cw=canvas.clientWidth;ch=canvas.clientHeight; const d=Math.min(window.devicePixelRatio || 1,2); canvas.width=Math.round(cw*d);canvas.height=Math.round(ch*d);ctx.setTransform(d,0,0,d,0,0); points=Array.from({length:Math.min(67,Math.ceil(cw*ch/14000))},()=>({x:Math.random()*cw,y:Math.random()*ch,r:Math.random()*1.3+.4,dx:(Math.random()-.5)*.22,dy:(Math.random()-.5)*.19})); };
+        resize();window.addEventListener('resize',resize,{passive:true});
+        const draw=()=> {ctx.clearRect(0,0,cw,ch);for(let i=0;i<points.length;i++){const a=points[i];a.x+=a.dx;a.y+=a.dy;if(a.x<0)a.x=cw;if(a.x>cw)a.x=0;if(a.y<0)a.y=ch;if(a.y>ch)a.y=0;ctx.fillStyle='rgba(173,183,255,.46)';ctx.beginPath();ctx.arc(a.x,a.y,a.r,0,Math.PI*2);ctx.fill();for(let j=i+1;j<points.length;j++){const b=points[j],dx=a.x-b.x,dy=a.y-b.y,dist=dx*dx+dy*dy;if(dist<13000){ctx.strokeStyle=`rgba(133,143,246,${(1-dist/13000)*.13})`;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}}}raf=requestAnimationFrame(draw);};
+        if(!reduced){draw();document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(raf);}else{cancelAnimationFrame(raf);draw();}});}else{ctx.clearRect(0,0,cw,ch);points.forEach(p=>{ctx.fillStyle='rgba(173,183,255,.35)';ctx.fillRect(p.x,p.y,2,2);});}
+      }
+    })();
+  </script>
 </body>
 </html>
