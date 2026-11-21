@@ -298,6 +298,42 @@
     @media(max-width:760px) { .journey-mobile-hint { display:block; } }
     @media(max-width:650px) { .journey-panel { padding:20px 16px; } .journey-chart { min-width:860px; } .journey-chart-head,.journey-row { grid-template-columns:215px minmax(0,1fr); column-gap:14px; } .journey-legend { gap:12px 18px; } .project-link-cta { margin-top:16px; } }
 
+
+    /* Project explorer: grouped academic and personal work */
+    .project-explorer { display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 22px;margin:-1px 0 39px;border:1px solid rgba(152,155,229,.22);border-radius:20px;background:linear-gradient(115deg,rgba(116,96,224,.12),rgba(45,158,188,.075)); }
+    .project-explorer-top { display:flex;flex-direction:column;gap:5px;min-width:210px; }
+    .project-explorer-title { display:flex;align-items:center;gap:9px;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:#eeefff; }
+    .explorer-dot {width:8px;height:8px;border-radius:50%;background:#82ecd8;box-shadow:0 0 0 5px rgba(130,236,216,.09);}
+    .project-filter-status {font-size:12px;color:#9ea9ca;}
+    .project-filters {position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;flex:0 1 505px;min-width:0;padding:5px;border-radius:14px;border:1px solid rgba(190,196,248,.15);background:rgba(4,8,22,.54);isolation:isolate;}
+    .project-filters::before {content:'';position:absolute;z-index:0;left:5px;top:5px;bottom:5px;width:calc((100% - 10px)/3);border:1px solid rgba(182,170,255,.27);border-radius:10px;background:linear-gradient(120deg,rgba(120,95,241,.29),rgba(64,173,221,.21));box-shadow:0 5px 26px rgba(68,80,172,.13);transition:transform .32s cubic-bezier(.2,.8,.2,1);}
+    .project-filters[data-active="university"]::before {transform:translateX(100%);}
+    .project-filters[data-active="personal"]::before {transform:translateX(200%);}
+    .project-filter {position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:9px;min-height:43px;padding:9px 6px;border:0;border-radius:10px;background:transparent;color:#a5b0cf;font-size:12px;font-weight:700;transition:color .2s;}
+    .project-filter:hover,.project-filter.active {color:#fff;}
+    .project-filter b {font:700 10px 'Space Grotesk',sans-serif;color:#8d98b7;border-radius:6px;background:rgba(142,150,209,.1);padding:2px 5px;}
+    .project-filter.active b {color:#d1d4ff;background:rgba(186,174,255,.14);}
+    .project-group {margin-top:33px;animation:projectGroupIn .38s ease both;}
+    .project-group[hidden] {display:none!important;}
+    @keyframes projectGroupIn {from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .project-group-heading {display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:19px;padding-bottom:17px;border-bottom:1px solid rgba(150,166,230,.14);}
+    .group-identity {display:flex;align-items:center;gap:16px;}
+    .group-symbol {height:49px;width:49px;flex:0 0 49px;display:grid;place-items:center;border:1px solid rgba(166,143,255,.30);border-radius:15px;font:700 24px 'Space Grotesk',sans-serif;color:#c3afff;background:linear-gradient(155deg,rgba(128,91,236,.22),rgba(102,102,204,.08));}
+    .group-symbol.personal {color:#9bf5e7;border-color:rgba(89,218,203,.30);background:linear-gradient(150deg,rgba(46,173,170,.16),rgba(68,116,170,.07));}
+    .group-overline {color:#958dca;letter-spacing:.16em;font:700 10px 'Space Grotesk',sans-serif;}
+    .personal-group .group-overline {color:#68cbbf;}
+    .project-group-heading h3 {font:700 22px 'Space Grotesk',sans-serif;margin:3px 0 2px;letter-spacing:-.035em;}
+    .project-group-heading p {color:#96a3c0;font-size:12px;margin:0;}
+    .group-count {font:700 12px 'Space Grotesk',sans-serif;color:#a1abcb;white-space:nowrap;border:1px solid var(--stroke);padding:8px 11px;border-radius:10px;}
+    .project-visual.executive {background:radial-gradient(ellipse at 50% 38%,rgba(124,102,244,.22),transparent 60%),linear-gradient(145deg,#11182d,#102337);}
+    .executive-svg {width:clamp(260px,94%,500px);height:210px;filter:drop-shadow(0 18px 28px rgba(96,103,239,.14));transform:translateY(18px);transition:transform .5s ease;}
+    .project:hover .executive-svg {transform:translateY(12px);}
+    .project-category {position:absolute;right:16px;top:19px;z-index:3;font:800 9px 'Space Grotesk',sans-serif;letter-spacing:.08em;color:#d8d1ff;line-height:1.4;padding:7px 9px;border:1px solid rgba(177,166,255,.26);border-radius:20px;background:rgba(18,20,45,.80);backdrop-filter:blur(8px);}
+    .project-category.personal {color:#a4fff1;border-color:rgba(112,234,213,.27);}
+    .personal-group .project.slim .project-visual {min-height:280px;}
+    @media(max-width:840px) {.project-explorer{display:block;padding:18px;}.project-explorer-top{margin-bottom:15px;}.project-filters{width:100%;}}
+    @media(max-width:650px) {.project-group-heading h3{font-size:19px;}.project-group-heading p{font-size:11px;}.group-symbol{width:42px;height:42px;flex-basis:42px;}.group-count{display:none;}.project-filter{gap:5px;font-size:11px;min-height:42px;}.project-filter b{font-size:9px;}.project-category{font-size:8px;padding:6px 8px;top:14px;right:12px;}.executive-svg{height:190px;transform:translateY(16px);}.project-explorer{margin-bottom:29px;}}
+
   </style>
 </head>
 <body>
@@ -367,79 +403,140 @@
       </div>
     </section>
 
-    <section class="main-section" id="projects">
-      <div class="wrap">
-        <div class="section-top" data-reveal><div><span class="eyebrow">02 / <span data-it="PROGETTI SELEZIONATI" data-en="SELECTED WORK">PROGETTI SELEZIONATI</span></span><h2 class="section-title" data-it="Dalle idee ai progetti." data-en="Ideas into projects.">Dalle idee ai progetti.</h2></div><p class="section-sub" data-it="Alcune esperienze che raccontano cosa sto imparando e costruendo. Seleziona un progetto per esplorarne obiettivi e dettagli." data-en="Selected experiences that show what I'm learning and building. Select a project to explore its goals and details.">Alcune esperienze che raccontano cosa sto imparando e costruendo. Seleziona un progetto per esplorarne obiettivi e dettagli.</p></div>
-        <div class="projects">
-          <a class="project project-link" href="projects/robot-quadrupede.html" data-tilt data-reveal aria-label="Apri la scheda del progetto robot quadrupede">
-            <div class="project-visual robot"><div class="grid-lines"></div><span class="project-badge">ROBOTICS / 2025</span>
-              <svg class="robot-svg" viewBox="0 0 350 220" xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="Illustrazione di un robot quadrupede">
-                <ellipse cx="173" cy="199" rx="114" ry="15" fill="#716cfa" opacity=".16"/>
-                <path d="M90 108L71 146L83 187M146 117L135 153L144 192M240 117L252 156L240 190M279 109L302 144L293 185" stroke="#8784f9" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M82 187L99 190M135 193L154 195M232 192L249 190M287 186L305 184" stroke="#63e1f2" stroke-width="11" stroke-linecap="round"/>
-                <path d="M84 80L263 65L298 92L277 132L117 145L74 117Z" fill="#333858" stroke="#b7b6ff" stroke-width="3"/>
-                <path d="M90 84L260 72L284 91L115 111Z" fill="#6262b0" opacity=".9"/>
-                <path d="M281 83L313 87L325 113L299 127L279 112" fill="#454a7a" stroke="#a9b4ff" stroke-width="3"/>
-                <circle cx="312" cy="103" r="7" fill="#64e7f0"/><circle cx="312" cy="103" r="15" stroke="#64e7f0" stroke-opacity=".35"/>
-                <path d="M147 92L201 86" stroke="#a1a0f6" stroke-width="3" stroke-linecap="round"/>
-                <circle cx="111" cy="122" r="8" fill="#9f9bfc"/><circle cx="249" cy="111" r="8" fill="#9f9bfc"/>
-              </svg>
-            </div>
-            <div class="project-body"><span class="project-number">PROJECT 001</span><h3 data-it="Robot quadrupede" data-en="Quadruped robot">Robot quadrupede</h3><p data-it="Contributo a un progetto universitario di robotica: sviluppo dei movimenti e della camminata, analisi di immagini e interpretazione di planimetrie." data-en="Contributed to a university robotics project: gait and motion development, image analysis and interpretation of building floor plans.">Contributo a un progetto universitario di robotica: sviluppo dei movimenti e della camminata, analisi di immagini e interpretazione di planimetrie.</p><div class="tags"><span class="tag">Robotics</span><span class="tag">Computer Vision</span><span class="tag">Image Processing</span></div><div class="project-link-cta"><span data-it="Apri il progetto" data-en="View project">Apri il progetto</span><span aria-hidden="true">↗</span></div></div>
-          </a>
-          <a class="project project-link" href="projects/lane-detection.html" data-tilt data-reveal aria-label="Apri la scheda del progetto lane detection">
-            <div class="project-visual lane"><div class="grid-lines"></div><span class="project-badge" data-it="AI / IN SVILUPPO" data-en="AI / IN PROGRESS">AI / IN SVILUPPO</span>
-              <svg class="lane-svg" viewBox="0 0 360 235" xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="Illustrazione del riconoscimento di corsie stradali">
-                <path d="M0 234L133 44H227L360 234H0Z" fill="#182b3f" opacity=".9"/><path d="M133 44L0 234M227 44L360 234" stroke="#4f6889" stroke-width="3"/>
-                <path d="M173 44L130 234M187 44L230 234" stroke="#6de4f2" stroke-width="3" stroke-dasharray="11 13"/>
-                <path d="M129 49L37 213M232 49L323 213" stroke="#51e0e9" stroke-width="4" opacity=".9"/>
-                <path d="M127 51L55 198M233 51L305 198" stroke="#73eefa" stroke-width="1" opacity=".3"/>
-                <rect x="117" y="34" width="128" height="152" rx="8" stroke="#817bf2" stroke-width="1.5" stroke-dasharray="6 7" opacity=".7"/>
-                <circle cx="127" cy="49" r="4" fill="#54eff6"/><circle cx="232" cy="49" r="4" fill="#54eff6"/><circle cx="37" cy="213" r="4" fill="#54eff6"/><circle cx="323" cy="213" r="4" fill="#54eff6"/>
-                <path d="M26 25H67M26 25V60M334 25H293M334 25V60M26 197V218H67M334 197V218H293" stroke="#7b79eb" stroke-width="2" opacity=".8"/>
-                <text x="18" y="17" fill="#86b2ff" font-family="monospace" font-size="9">LANE DETECTION</text>
-              </svg>
-            </div>
-            <div class="project-body"><span class="project-number">PROJECT 002</span><h3>Lane Detection</h3><p data-it="Progetto universitario in corso per riconoscere e disegnare le corsie stradali nelle immagini tramite reti neurali, con dataset TuSimple." data-en="Ongoing university project to detect and draw road lane markings in images using neural networks and the TuSimple dataset.">Progetto universitario in corso per riconoscere e disegnare le corsie stradali nelle immagini tramite reti neurali, con dataset TuSimple.</p><div class="tags"><span class="tag">Python</span><span class="tag">Deep Learning</span><span class="tag">Computer Vision</span></div><div class="project-link-cta"><span data-it="Apri il progetto" data-en="View project">Apri il progetto</span><span aria-hidden="true">↗</span></div></div>
-          </a>
-          <a class="project project-link" href="projects/easychat.html" data-tilt data-reveal aria-label="Apri la scheda del progetto easychat">
-            <div class="project-visual easychat"><div class="grid-lines"></div><span class="project-badge">ANDROID / MOBILE</span>
-              <svg class="web-svg" viewBox="0 0 350 210" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="Illustrazione di uno smartphone con conversazioni in EasyChat">
-                <defs><linearGradient id="chatScreen" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#222750"/><stop offset="1" stop-color="#111c34"/></linearGradient><linearGradient id="chatBubble" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9284ff"/><stop offset="1" stop-color="#57d3e7"/></linearGradient></defs>
-                <rect x="114" y="7" width="122" height="195" rx="23" fill="#10172d" stroke="#8991e5" stroke-width="2.4"/>
-                <rect x="120" y="16" width="110" height="176" rx="17" fill="url(#chatScreen)"/>
-                <rect x="154" y="20" width="42" height="7" rx="3.5" fill="#0c1022"/>
-                <circle cx="142" cy="46" r="9" fill="#878aff" opacity=".83"/><rect x="157" y="42" width="49" height="6" rx="3" fill="#e2e5ff" opacity=".85"/><rect x="157" y="52" width="34" height="4" rx="2" fill="#8d99bf"/>
-                <rect x="130" y="76" width="72" height="24" rx="11" fill="#343d67"/><rect x="140" y="85" width="48" height="5" rx="2.5" fill="#b3c0e8"/>
-                <rect x="150" y="109" width="69" height="29" rx="12" fill="url(#chatBubble)"/><rect x="159" y="118" width="47" height="5" rx="2.5" fill="#202f53" opacity=".8"/><rect x="159" y="127" width="35" height="4" rx="2" fill="#202f53" opacity=".65"/>
-                <rect x="130" y="147" width="63" height="20" rx="10" fill="#343d67"/><rect x="139" y="155" width="43" height="4" rx="2" fill="#b3c0e8"/>
-                <rect x="129" y="175" width="92" height="10" rx="5" fill="#283453"/>
-                <circle cx="73" cy="74" r="29" fill="#5857b8" opacity=".22" stroke="#aaa3ff" stroke-width="1.5"/><path d="M60 70h26m-26 8h17" stroke="#aaa3ff" stroke-width="3.5" stroke-linecap="round"/>
-                <circle cx="277" cy="142" r="28" fill="#1c7789" opacity=".26" stroke="#70daed" stroke-width="1.5"/><path d="M265 144l9 9 15-19" stroke="#76e7ed" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <div class="project-body"><span class="project-number">PROJECT 003</span><h3>EasyChat</h3><p data-it="Applicazione Android che ho sviluppato utilizzando Android Studio, nell'ambito dei miei progetti di sviluppo mobile." data-en="An Android application I developed using Android Studio as part of my mobile development projects.">Applicazione Android che ho sviluppato utilizzando Android Studio, nell'ambito dei miei progetti di sviluppo mobile.</p><div class="tags"><span class="tag">Android Studio</span><span class="tag">Android</span><span class="tag">Mobile Development</span></div><div class="project-link-cta"><span data-it="Apri il progetto" data-en="View project">Apri il progetto</span><span aria-hidden="true">↗</span></div></div>
-          </a>
-          <a class="project project-link" href="projects/web-app-trasporti.html" data-tilt data-reveal aria-label="Apri la scheda del progetto web app trasporti">
-            <div class="project-visual rides"><div class="grid-lines"></div><span class="project-badge">WEB APPLICATION</span>
-              <svg class="web-svg" viewBox="0 0 350 210" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="Illustrazione di una web app per la gestione di un servizio di trasporto con mappa e percorso">
-                <defs><linearGradient id="ridesBg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1b2a43"/><stop offset="1" stop-color="#101d32"/></linearGradient></defs>
-                <rect x="20" y="23" width="310" height="164" rx="14" fill="url(#ridesBg)" stroke="#607c9e" stroke-width="2"/>
-                <path d="M20 48H330" stroke="#607c9e"/><circle cx="39" cy="36" r="4.5" fill="#ed899c"/><circle cx="54" cy="36" r="4.5" fill="#edc08c"/><circle cx="69" cy="36" r="4.5" fill="#82d9c5"/>
-                <rect x="34" y="62" width="89" height="110" rx="9" fill="#202b48" stroke="#506081" stroke-width=".7"/>
-                <rect x="45" y="75" width="55" height="7" rx="3.5" fill="#d0def2"/><rect x="45" y="91" width="67" height="6" rx="3" fill="#667d9d"/><rect x="45" y="104" width="60" height="6" rx="3" fill="#667d9d"/><rect x="45" y="128" width="65" height="26" rx="7" fill="#5f69d0"/><rect x="57" y="138" width="40" height="5" rx="2.5" fill="#ebefff"/>
-                <rect x="133" y="61" width="184" height="111" rx="9" fill="#152b3b"/>
-                <path d="M136 88l56-26M174 173l38-58 46 26 57-58M135 127l51 19 58-65 71 40" stroke="#456a81" stroke-width="8" stroke-linecap="round" opacity=".43"/>
-                <path d="M145 145C179 151 192 99 227 112S261 145 294 84" stroke="#71e2df" stroke-width="4" stroke-linecap="round" stroke-dasharray="7 6"/>
-                <circle cx="145" cy="145" r="8" fill="#8e8aff" stroke="#dde7ff" stroke-width="2"/>
-                <path d="M294 62c-13 0-23 10-23 23 0 17 23 40 23 40s23-23 23-40c0-13-10-23-23-23Z" fill="#8f87f8"/><circle cx="294" cy="85" r="8" fill="#eef1ff"/>
-              </svg>
-            </div>
-            <div class="project-body"><span class="project-number">PROJECT 004</span><h3 data-it="Web app per servizio tipo Uber" data-en="Ride-hailing service web app">Web app per servizio tipo Uber</h3><p data-it="Applicazione web che ho realizzato per gestire un servizio di trasporto su richiesta, sul modello di Uber." data-en="A web application I developed to manage an on-demand transportation service, based on the Uber model.">Applicazione web che ho realizzato per gestire un servizio di trasporto su richiesta, sul modello di Uber.</p><div class="tags"><span class="tag">Web Application</span><span class="tag">Ride-hailing</span><span class="tag">Software Development</span></div><div class="project-link-cta"><span data-it="Apri il progetto" data-en="View project">Apri il progetto</span><span aria-hidden="true">↗</span></div></div>
-          </a>
-        </div>
+
+<section class="main-section" id="projects">
+  <div class="wrap">
+    <div class="section-top" data-reveal>
+      <div><span class="eyebrow">02 / <span data-it="PROGETTI SELEZIONATI" data-en="SELECTED WORK">PROGETTI SELEZIONATI</span></span><h2 class="section-title" data-it="Dalle idee ai progetti." data-en="Ideas into projects.">Dalle idee ai progetti.</h2></div>
+      <p class="section-sub" data-it="Esperienze accademiche e iniziative personali. Esplora i progetti per scoprire cosa ho realizzato e come ho affrontato ogni sfida." data-en="Academic work and personal initiatives. Explore the projects to see what I built and how I approached each challenge.">Esperienze accademiche e iniziative personali. Esplora i progetti per scoprire cosa ho realizzato e come ho affrontato ogni sfida.</p>
+    </div>
+    <div class="project-explorer" data-reveal>
+      <div class="project-explorer-top"><div class="project-explorer-title"><span class="explorer-dot"></span><span data-it="Esplora per categoria" data-en="Explore by category">Esplora per categoria</span></div><span class="project-filter-status" id="projectFilterStatus" role="status" aria-live="polite" data-it="5 progetti da esplorare" data-en="5 projects to explore">5 progetti da esplorare</span></div>
+      <div class="project-filters" id="projectFilters" data-active="all" role="group" aria-label="Filtri dei progetti">
+        <button type="button" class="project-filter active" data-filter="all" aria-pressed="true"><span data-it="Tutti" data-en="All">Tutti</span><b>05</b></button>
+        <button type="button" class="project-filter" data-filter="university" aria-pressed="false"><span data-it="Universitari" data-en="Academic">Universitari</span><b>04</b></button>
+        <button type="button" class="project-filter" data-filter="personal" aria-pressed="false"><span data-it="Personali" data-en="Personal">Personali</span><b>01</b></button>
       </div>
+    </div>
+    <section class="project-group" id="universityProjects" data-project-group="university" aria-labelledby="universityProjectsTitle">
+      <div class="project-group-heading"><div class="group-identity"><span class="group-symbol" aria-hidden="true">✦</span><div><span class="group-overline">ACADEMIC WORK / 04</span><h3 id="universityProjectsTitle" data-it="Progetti universitari" data-en="University projects">Progetti universitari</h3><p data-it="Progetti sviluppati durante i corsi e le esperienze accademiche." data-en="Work developed during university courses and academic experiences.">Progetti sviluppati durante i corsi e le esperienze accademiche.</p></div></div><span class="group-count">04 / 05</span></div>
+      <div class="projects"><a aria-label="Apri la scheda del progetto robot quadrupede" class="project project-link" data-reveal="" data-tilt="" href="projects/robot-quadrupede.html">
+<div class="project-visual robot"><div class="grid-lines"></div><span class="project-badge">ROBOTICS / 2025</span>
+<svg aria-label="Illustrazione di un robot quadrupede" class="robot-svg" fill="none" viewbox="0 0 350 220" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="173" cy="199" fill="#716cfa" opacity=".16" rx="114" ry="15"></ellipse>
+<path d="M90 108L71 146L83 187M146 117L135 153L144 192M240 117L252 156L240 190M279 109L302 144L293 185" stroke="#8784f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="17"></path>
+<path d="M82 187L99 190M135 193L154 195M232 192L249 190M287 186L305 184" stroke="#63e1f2" stroke-linecap="round" stroke-width="11"></path>
+<path d="M84 80L263 65L298 92L277 132L117 145L74 117Z" fill="#333858" stroke="#b7b6ff" stroke-width="3"></path>
+<path d="M90 84L260 72L284 91L115 111Z" fill="#6262b0" opacity=".9"></path>
+<path d="M281 83L313 87L325 113L299 127L279 112" fill="#454a7a" stroke="#a9b4ff" stroke-width="3"></path>
+<circle cx="312" cy="103" fill="#64e7f0" r="7"></circle><circle cx="312" cy="103" r="15" stroke="#64e7f0" stroke-opacity=".35"></circle>
+<path d="M147 92L201 86" stroke="#a1a0f6" stroke-linecap="round" stroke-width="3"></path>
+<circle cx="111" cy="122" fill="#9f9bfc" r="8"></circle><circle cx="249" cy="111" fill="#9f9bfc" r="8"></circle>
+</svg>
+<span class="project-category university" data-en="ACADEMIC" data-it="UNIVERSITARIO">UNIVERSITARIO</span></div>
+<div class="project-body"><span class="project-number">PROJECT 001</span><h3 data-en="Quadruped robot" data-it="Robot quadrupede">Robot quadrupede</h3><p data-en="Contributed to a university robotics project: gait and motion development, image analysis and interpretation of building floor plans." data-it="Contributo a un progetto universitario di robotica: sviluppo dei movimenti e della camminata, analisi di immagini e interpretazione di planimetrie.">Contributo a un progetto universitario di robotica: sviluppo dei movimenti e della camminata, analisi di immagini e interpretazione di planimetrie.</p><div class="tags"><span class="tag">Robotics</span><span class="tag">Computer Vision</span><span class="tag">Image Processing</span></div><div class="project-link-cta"><span data-en="View project" data-it="Apri il progetto">Apri il progetto</span><span aria-hidden="true">↗</span></div></div>
+</a>
+<a class="project project-link" href="projects/executive-realtime.html" data-tilt data-reveal aria-label="Apri la scheda del progetto Real-Time Executive">
+  <div class="project-visual executive">
+    <div class="grid-lines"></div><span class="project-badge">REAL-TIME SYSTEMS / C++</span>
+    <span class="project-category university" data-it="UNIVERSITARIO" data-en="ACADEMIC">UNIVERSITARIO</span>
+    <svg class="executive-svg" viewBox="0 0 500 290" xmlns="http://www.w3.org/2000/svg" fill="none" role="img" aria-label="Visualizzazione di uno scheduler real-time con frame e task">
+      <defs>
+        <linearGradient id="execPanel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#24304a"/><stop offset="1" stop-color="#111a33"/></linearGradient>
+        <linearGradient id="execFrame" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#a193ff"/><stop offset="1" stop-color="#71d9f1"/></linearGradient>
+        <filter id="execGlow"><feGaussianBlur stdDeviation="5"/></filter>
+      </defs>
+      <ellipse cx="253" cy="248" rx="196" ry="21" fill="#7268ff" opacity=".10"/>
+      <rect x="43" y="31" width="414" height="215" rx="18" fill="url(#execPanel)" stroke="#6575ae" stroke-opacity=".65" stroke-width="1.5"/>
+      <path d="M43 72H457" stroke="#53617f" stroke-opacity=".75"/>
+      <circle cx="66" cy="52" r="5" fill="#f38d9a"/><circle cx="82" cy="52" r="5" fill="#f4c388"/><circle cx="98" cy="52" r="5" fill="#70d6c6"/>
+      <text x="121" y="57" fill="#bdc8e6" font-size="12" font-weight="700" font-family="monospace">CLOCK-DRIVEN EXECUTIVE</text>
+      <text x="61" y="101" fill="#96a8cd" font-size="11" font-family="monospace">HYPERPERIOD / 40ms</text>
+      <path d="M63 115H436" stroke="#617093" stroke-opacity=".5" stroke-dasharray="2 6"/>
+      <g transform="translate(64 134)">
+        <rect x="0" y="0" width="34" height="43" rx="6" fill="#6264c9" stroke="#c7c4ff"/>
+        <rect x="38" y="0" width="34" height="43" rx="6" fill="#5974c8" stroke="#a5c7ff"/>
+        <rect x="76" y="0" width="34" height="43" rx="6" fill="#6264c9" stroke="#c7c4ff"/>
+        <rect x="114" y="0" width="34" height="43" rx="6" fill="#427caa" stroke="#a3d4f8"/>
+        <rect x="152" y="0" width="34" height="43" rx="6" fill="#6264c9" stroke="#c7c4ff"/>
+        <rect x="190" y="0" width="34" height="43" rx="6" fill="#427caa" stroke="#a3d4f8"/>
+        <rect x="228" y="0" width="34" height="43" rx="6" fill="#5974c8" stroke="#a5c7ff"/>
+        <rect x="266" y="0" width="34" height="43" rx="6" fill="#6264c9" stroke="#c7c4ff"/>
+        <rect x="304" y="0" width="34" height="43" rx="6" fill="#204955" stroke="#65d3c3" stroke-dasharray="3 2"/>
+        <rect x="342" y="0" width="34" height="43" rx="6" fill="#6264c9" stroke="#c7c4ff"/>
+        <g fill="#f6f7ff" font-family="monospace" font-size="12" text-anchor="middle" font-weight="700"><text x="17" y="27">F0</text><text x="55" y="27">F1</text><text x="93" y="27">F2</text><text x="131" y="27">F3</text><text x="169" y="27">F4</text><text x="207" y="27">F5</text><text x="245" y="27">F6</text><text x="283" y="27">F7</text><text x="321" y="27">F8</text><text x="359" y="27">F9</text></g>
+      </g>
+      <path d="M78 199H422" stroke="#6da8c6" stroke-width="2" opacity=".40"/>
+      <path d="M78 199H313" stroke="url(#execFrame)" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="313" cy="199" r="9" fill="#63daeb" opacity=".6" filter="url(#execGlow)"/>
+      <circle cx="313" cy="199" r="5" fill="#a9f5ff"/>
+      <text x="72" y="226" fill="#96a8cd" font-size="11" font-family="monospace">TASKS</text>
+      <rect x="125" y="215" width="11" height="11" rx="3" fill="#8f8aff"/><text x="142" y="225" fill="#c9ccea" font-size="10" font-family="monospace">PERIODIC</text>
+      <rect x="240" y="215" width="11" height="11" rx="3" fill="#64d6c5"/><text x="256" y="225" fill="#c9ccea" font-size="10" font-family="monospace">SLACK</text>
+      <rect x="339" y="215" width="11" height="11" rx="3" fill="#f4b97d"/><text x="356" y="225" fill="#c9ccea" font-size="10" font-family="monospace">ALARM</text>
+    </svg>
+  </div>
+  <div class="project-body"><span class="project-number">PROJECT 005</span><h3>Real-Time Executive</h3>
+    <p data-it="Executive clock-driven in C++ per organizzare task periodici e aperiodici, gestire slack time e deadline. Include una simulazione interattiva dello scheduling." data-en="A C++ clock-driven executive for scheduling periodic and aperiodic tasks, managing slack time and deadlines. Includes an interactive scheduling simulation.">Executive clock-driven in C++ per organizzare task periodici e aperiodici, gestire slack time e deadline. Include una simulazione interattiva dello scheduling.</p>
+    <div class="tags"><span class="tag">C++</span><span class="tag">Real-Time Systems</span><span class="tag">Scheduling</span></div>
+    <div class="project-link-cta"><span data-it="Esplora la simulazione" data-en="Explore simulation">Esplora la simulazione</span><span aria-hidden="true">↗</span></div>
+  </div>
+</a>
+<a aria-label="Apri la scheda del progetto easychat" class="project project-link" data-reveal="" data-tilt="" href="projects/easychat.html">
+<div class="project-visual easychat"><div class="grid-lines"></div><span class="project-badge">ANDROID / MOBILE</span>
+<svg aria-label="Illustrazione di uno smartphone con conversazioni in EasyChat" class="web-svg" fill="none" role="img" viewbox="0 0 350 210" xmlns="http://www.w3.org/2000/svg">
+<defs><lineargradient id="chatScreen" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#222750"></stop><stop offset="1" stop-color="#111c34"></stop></lineargradient><lineargradient id="chatBubble" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#9284ff"></stop><stop offset="1" stop-color="#57d3e7"></stop></lineargradient></defs>
+<rect fill="#10172d" height="195" rx="23" stroke="#8991e5" stroke-width="2.4" width="122" x="114" y="7"></rect>
+<rect fill="url(#chatScreen)" height="176" rx="17" width="110" x="120" y="16"></rect>
+<rect fill="#0c1022" height="7" rx="3.5" width="42" x="154" y="20"></rect>
+<circle cx="142" cy="46" fill="#878aff" opacity=".83" r="9"></circle><rect fill="#e2e5ff" height="6" opacity=".85" rx="3" width="49" x="157" y="42"></rect><rect fill="#8d99bf" height="4" rx="2" width="34" x="157" y="52"></rect>
+<rect fill="#343d67" height="24" rx="11" width="72" x="130" y="76"></rect><rect fill="#b3c0e8" height="5" rx="2.5" width="48" x="140" y="85"></rect>
+<rect fill="url(#chatBubble)" height="29" rx="12" width="69" x="150" y="109"></rect><rect fill="#202f53" height="5" opacity=".8" rx="2.5" width="47" x="159" y="118"></rect><rect fill="#202f53" height="4" opacity=".65" rx="2" width="35" x="159" y="127"></rect>
+<rect fill="#343d67" height="20" rx="10" width="63" x="130" y="147"></rect><rect fill="#b3c0e8" height="4" rx="2" width="43" x="139" y="155"></rect>
+<rect fill="#283453" height="10" rx="5" width="92" x="129" y="175"></rect>
+<circle cx="73" cy="74" fill="#5857b8" opacity=".22" r="29" stroke="#aaa3ff" stroke-width="1.5"></circle><path d="M60 70h26m-26 8h17" stroke="#aaa3ff" stroke-linecap="round" stroke-width="3.5"></path>
+<circle cx="277" cy="142" fill="#1c7789" opacity=".26" r="28" stroke="#70daed" stroke-width="1.5"></circle><path d="M265 144l9 9 15-19" stroke="#76e7ed" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5"></path>
+</svg>
+<span class="project-category university" data-en="ACADEMIC" data-it="UNIVERSITARIO">UNIVERSITARIO</span></div>
+<div class="project-body"><span class="project-number">PROJECT 003</span><h3>EasyChat</h3><p data-en="Kotlin Android app for one-to-one text and voice messaging, with sign-in, user directory and data management through MongoDB." data-it="App Android in Kotlin per chat individuali con messaggi di testo e vocali, login e registrazione, lista utenti e gestione dati tramite MongoDB.">App Android in Kotlin per chat individuali con messaggi di testo e vocali, login e registrazione, lista utenti e gestione dati tramite MongoDB.</p><div class="tags"><span class="tag">Kotlin</span><span class="tag">Android Studio</span><span class="tag">MongoDB</span></div><div class="project-link-cta"><span data-en="View project" data-it="Apri il progetto">Apri il progetto</span><span aria-hidden="true">↗</span></div></div>
+</a><a aria-label="Apri la scheda del progetto web app trasporti" class="project project-link" data-reveal="" data-tilt="" href="projects/web-app-trasporti.html">
+<div class="project-visual rides"><div class="grid-lines"></div><span class="project-badge">WEB APPLICATION</span>
+<svg aria-label="Illustrazione di una web app per la gestione di un servizio di trasporto con mappa e percorso" class="web-svg" fill="none" role="img" viewbox="0 0 350 210" xmlns="http://www.w3.org/2000/svg">
+<defs><lineargradient id="ridesBg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#1b2a43"></stop><stop offset="1" stop-color="#101d32"></stop></lineargradient></defs>
+<rect fill="url(#ridesBg)" height="164" rx="14" stroke="#607c9e" stroke-width="2" width="310" x="20" y="23"></rect>
+<path d="M20 48H330" stroke="#607c9e"></path><circle cx="39" cy="36" fill="#ed899c" r="4.5"></circle><circle cx="54" cy="36" fill="#edc08c" r="4.5"></circle><circle cx="69" cy="36" fill="#82d9c5" r="4.5"></circle>
+<rect fill="#202b48" height="110" rx="9" stroke="#506081" stroke-width=".7" width="89" x="34" y="62"></rect>
+<rect fill="#d0def2" height="7" rx="3.5" width="55" x="45" y="75"></rect><rect fill="#667d9d" height="6" rx="3" width="67" x="45" y="91"></rect><rect fill="#667d9d" height="6" rx="3" width="60" x="45" y="104"></rect><rect fill="#5f69d0" height="26" rx="7" width="65" x="45" y="128"></rect><rect fill="#ebefff" height="5" rx="2.5" width="40" x="57" y="138"></rect>
+<rect fill="#152b3b" height="111" rx="9" width="184" x="133" y="61"></rect>
+<path d="M136 88l56-26M174 173l38-58 46 26 57-58M135 127l51 19 58-65 71 40" opacity=".43" stroke="#456a81" stroke-linecap="round" stroke-width="8"></path>
+<path d="M145 145C179 151 192 99 227 112S261 145 294 84" stroke="#71e2df" stroke-dasharray="7 6" stroke-linecap="round" stroke-width="4"></path>
+<circle cx="145" cy="145" fill="#8e8aff" r="8" stroke="#dde7ff" stroke-width="2"></circle>
+<path d="M294 62c-13 0-23 10-23 23 0 17 23 40 23 40s23-23 23-40c0-13-10-23-23-23Z" fill="#8f87f8"></path><circle cx="294" cy="85" fill="#eef1ff" r="8"></circle>
+</svg>
+<span class="project-category university" data-en="ACADEMIC" data-it="UNIVERSITARIO">UNIVERSITARIO</span></div>
+<div class="project-body"><span class="project-number">PROJECT 004</span><h3 data-en="Ride-hailing service web app" data-it="Web app per servizio tipo Uber">Web app per servizio tipo Uber</h3><p data-en="A web application I developed to manage an on-demand transportation service, based on the Uber model." data-it="Applicazione web che ho realizzato per gestire un servizio di trasporto su richiesta, sul modello di Uber.">Applicazione web che ho realizzato per gestire un servizio di trasporto su richiesta, sul modello di Uber.</p><div class="tags"><span class="tag">Web Application</span><span class="tag">Ride-hailing</span><span class="tag">Software Development</span></div><div class="project-link-cta"><span data-en="View project" data-it="Apri il progetto">Apri il progetto</span><span aria-hidden="true">↗</span></div></div>
+</a></div>
     </section>
+    <section class="project-group personal-group" id="personalProjects" data-project-group="personal" aria-labelledby="personalProjectsTitle">
+      <div class="project-group-heading"><div class="group-identity"><span class="group-symbol personal" aria-hidden="true">↗</span><div><span class="group-overline">PERSONAL LAB / 01</span><h3 id="personalProjectsTitle" data-it="Progetti personali" data-en="Personal projects">Progetti personali</h3><p data-it="Sperimentazioni autonome, sviluppate per esplorare nuove idee e tecnologie." data-en="Independent experiments to explore ideas and technologies beyond coursework.">Sperimentazioni autonome, sviluppate per esplorare nuove idee e tecnologie.</p></div></div><span class="group-count">01 / 05</span></div>
+      <div class="projects"><a aria-label="Apri la scheda del progetto lane detection" class="project project-link slim" data-reveal="" data-tilt="" href="projects/lane-detection.html">
+<div class="project-visual lane"><div class="grid-lines"></div><span class="project-badge" data-en="AI / IN PROGRESS" data-it="AI / IN SVILUPPO">AI / IN SVILUPPO</span>
+<svg aria-label="Illustrazione del riconoscimento di corsie stradali" class="lane-svg" fill="none" viewbox="0 0 360 235" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 234L133 44H227L360 234H0Z" fill="#182b3f" opacity=".9"></path><path d="M133 44L0 234M227 44L360 234" stroke="#4f6889" stroke-width="3"></path>
+<path d="M173 44L130 234M187 44L230 234" stroke="#6de4f2" stroke-dasharray="11 13" stroke-width="3"></path>
+<path d="M129 49L37 213M232 49L323 213" opacity=".9" stroke="#51e0e9" stroke-width="4"></path>
+<path d="M127 51L55 198M233 51L305 198" opacity=".3" stroke="#73eefa" stroke-width="1"></path>
+<rect height="152" opacity=".7" rx="8" stroke="#817bf2" stroke-dasharray="6 7" stroke-width="1.5" width="128" x="117" y="34"></rect>
+<circle cx="127" cy="49" fill="#54eff6" r="4"></circle><circle cx="232" cy="49" fill="#54eff6" r="4"></circle><circle cx="37" cy="213" fill="#54eff6" r="4"></circle><circle cx="323" cy="213" fill="#54eff6" r="4"></circle>
+<path d="M26 25H67M26 25V60M334 25H293M334 25V60M26 197V218H67M334 197V218H293" opacity=".8" stroke="#7b79eb" stroke-width="2"></path>
+<text fill="#86b2ff" font-family="monospace" font-size="9" x="18" y="17">LANE DETECTION</text>
+</svg>
+<span class="project-category personal" data-en="PERSONAL" data-it="PERSONALE">PERSONALE</span></div>
+<div class="project-body"><span class="project-number">PROJECT 002</span><h3>Lane Detection</h3><p data-en="Personal Computer Vision project focused on road-lane detection using neural networks and the TuSimple dataset." data-it="Progetto personale di Computer Vision dedicato al rilevamento delle corsie stradali tramite reti neurali e dataset TuSimple.">Progetto personale di Computer Vision dedicato al rilevamento delle corsie stradali tramite reti neurali e dataset TuSimple.</p><div class="tags"><span class="tag">Python</span><span class="tag">Deep Learning</span><span class="tag">Computer Vision</span></div><div class="project-link-cta"><span data-en="View project" data-it="Apri il progetto">Apri il progetto</span><span aria-hidden="true">↗</span></div></div>
+</a></div>
+    </section>
+  </div>
+</section>
 
     <section class="main-section" id="skills"><div class="wrap"><div class="section-top" data-reveal><div><span class="eyebrow">03 / <span data-it="TECNOLOGIE" data-en="TECHNOLOGIES">TECNOLOGIE</span></span><h2 class="section-title" data-it="Il mio toolkit." data-en="My toolkit.">Il mio toolkit.</h2></div><p class="section-sub" data-it="Linguaggi e strumenti incontrati durante il mio percorso formativo e nei progetti." data-en="Languages and tools I've worked with throughout my studies and projects.">Linguaggi e strumenti incontrati durante il mio percorso formativo e nei progetti.</p></div>
       <div class="skills-grid">
@@ -514,6 +611,35 @@
       }
       setLanguage(language);
       langButton.addEventListener('click', () => setLanguage(language === 'it' ? 'en' : 'it'));
+
+      // Filtro dei progetti: mantiene i lavori suddivisi per origine e accessibili da tastiera.
+      const projectFilters = qs('#projectFilters');
+      const projectFilterStatus = qs('#projectFilterStatus');
+      const projectGroups = Array.from(document.querySelectorAll('[data-project-group]'));
+      const projectFilterTexts = {
+        all: {it:'5 progetti da esplorare', en:'5 projects to explore'},
+        university: {it:'4 progetti universitari', en:'4 university projects'},
+        personal: {it:'1 progetto personale', en:'1 personal project'}
+      };
+      projectFilters.querySelectorAll('button[data-filter]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const chosen = btn.dataset.filter;
+          projectFilters.dataset.active = chosen;
+          projectFilters.querySelectorAll('button[data-filter]').forEach(item => {
+            const active = item === btn;
+            item.classList.toggle('active',active);
+            item.setAttribute('aria-pressed',String(active));
+          });
+          projectGroups.forEach(group => {group.hidden = chosen !== 'all' && group.dataset.projectGroup !== chosen;});
+          const copy = projectFilterTexts[chosen];
+          projectFilterStatus.dataset.it = copy.it;
+          projectFilterStatus.dataset.en = copy.en;
+          projectFilterStatus.textContent = copy[language];
+          updateScroll();
+        });
+      });
+      // La lingua attiva aggiorna anche i testi del filtro grazie a data-it / data-en.
+
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if ('IntersectionObserver' in window) {
         const obs = new IntersectionObserver(entries => { for (const e of entries) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } } }, { threshold:.07, rootMargin:'0px 0px -30px 0px' });
